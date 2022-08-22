@@ -1,0 +1,36 @@
+# Get All
+GET http://localhost:3000/movies
+
+### Get Movie By Id
+GET http://localhost:3000/movies/1
+
+### Resgister Movie
+POST http://localhost:3000/movies
+Content-Type: application/json
+
+{
+    "id": "1",
+    "name": "teste",
+    "category": "teste",
+    "premiere_date": "2022/12/12",
+    "description": "description",
+    "duration": 120,
+    "createdA": 1661195215426
+}
+
+### Edit Movie
+PATCH   http://localhost:3000/movies/1
+Content-Type: application/json
+
+{
+    "id": "2",
+    "name": "teste2",
+    "category": "teste2",
+    "premiere_date": "2022/12/12",
+    "description": "description2",
+    "duration": 1200,
+    "createdA": 1661195215426
+}
+
+### Delete Movies
+DELETE  http://localhost:3000/movies/1
