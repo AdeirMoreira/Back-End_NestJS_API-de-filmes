@@ -1,8 +1,8 @@
-import { PrimaryColumn, Column, CreateDateColumn, Entity } from 'typeorm';
+import { PrimaryColumn, Column, CreateDateColumn, Entity, Timestamp } from 'typeorm';
 
 @Entity()
 export class Movies {
-  @PrimaryColumn()
+  @PrimaryColumn('uuid')
   id: string;
 
   @Column()
@@ -20,6 +20,6 @@ export class Movies {
   @Column('int')
   duration: number;
 
-  @CreateDateColumn()
-  createdAt: Date;
+  @CreateDateColumn({default: 'now()'})
+  createdAt: Timestamp;
 }
