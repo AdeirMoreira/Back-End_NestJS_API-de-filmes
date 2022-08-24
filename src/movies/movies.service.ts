@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { AutenticationService } from 'src/autentication/autentication.service';
+import { UuidService } from 'src/uuid/uuid.service';
 import { Repository } from 'typeorm';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
@@ -10,9 +12,11 @@ export class MoviesService {
   constructor(
     @InjectRepository(Movies)
     private moviesRepositories: Repository<Movies>,
+    private readonly uuid: UuidService
   ) {}
 
   create(createMovieDto: CreateMovieDto) {
+    createMovieDto.id = this.uuid.generate()
     return this.moviesRepositories.save(createMovieDto)
   }
 
@@ -25,7 +29,7 @@ export class MoviesService {
   }
 
   update(id: string, updateMovieDto: UpdateMovieDto) {
-    return 
+    return this.moviesRepositories.update(id,updateMovieDto)
   }
 
   remove(id: string) {
