@@ -14,7 +14,6 @@ Essa API foi desenvolvida com a finaliade de praticar o framework [NestJS](https
 - [NodeJS](https://nodejs.org/pt-br/)
 - [NestJS](https://nestjs.com/)
 - [typeORM](https://typeorm.io/)
-- [Jest](https://jestjs.io/pt-BR/)
 - [PostgreSQL](https://www.postgresql.org/)
 - Autenticação Jwt
 - POO
@@ -34,7 +33,7 @@ O banco de dadas é modelado com 2 entidades: Courses e Tags, cada uma tem sua r
 
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/98994187/188250644-3869a466-546b-449e-ba8f-0878ced0a5da.png" width="300" alt="Nest Logo" />
+  <img src="https://user-images.githubusercontent.com/98994187/188336250-472043ca-7e5a-43bf-ba43-69fd5caf5566.png" width="300" alt="Nest Logo" />
 </p>
 
 ## Rodar e testar o case com o Docker 🐳
@@ -49,7 +48,7 @@ docker compose up
 Após iniciar o servidor, é possivel testar todos os endpoints no arquivo api.http no qual estão configurados e prontos para uso, bastando substituir os ids nas requisições quando necessario. O arquivo se encotra na raiz do projeto. 
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/98994187/188251471-e9f8ff97-a5b6-42d6-acbb-0aab5f60ee1c.png" width="600" height="400" alt="Nest Logo" />
+  <img src="https://user-images.githubusercontent.com/98994187/188336247-4d993303-4236-4ce2-8e69-422008b105a9.png" width="600" height="400" alt="Nest Logo" />
 </p>
 
 <h2 id="desenvolvedores">👨‍💻 Desenvolvedores</h2>
