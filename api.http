@@ -8,7 +8,8 @@ Content-Type: application/json
     "password": "senha"
 }
 
-### LOgin
+### Login
+# @name login
 POST http://localhost:3000/user/login
 Content-Type: application/json 
 
@@ -17,23 +18,32 @@ Content-Type: application/json
     "password": "senha"
 }
 
+###
+@token = {{login.response.body.token}}
+
 ### Get All Users
 GET http://localhost:3000/user
+Authorization: {{token}}
 
 ### Get User By Id
-GET http://localhost:3000/user/26414a26-c230-44f6-9322-99aa48652fb2
+GET http://localhost:3000/user/36fe45d9-6a2d-4036-9c7a-ce0f96ddf4a9
+Authorization: {{token}}
 
 ### Delete User
 DELETE http://localhost:3000/user/74e8d0e2-a73b-452e-9539-09f6f3345422
-### 
+Authorization: {{token}}
 
+### Get All Movies
 GET http://localhost:3000/movies
+Authorization: {{token}}
 
 ### Get Movie By Id
-GET http://localhost:3000/movies/1
+GET http://localhost:3000/movies/
+Authorization: {{token}}
 
 ### Resgister Movie
 POST http://localhost:3000/movies
+Authorization: {{token}}
 Content-Type: application/json
 
 {
@@ -45,7 +55,8 @@ Content-Type: application/json
 }
 
 ### Edit Movie
-PATCH   http://localhost:3000/movies/1
+PATCH   http://localhost:3000/movies/b79a2cf2-068b-42b9-8ba2-a8310bc92bb7
+Authorization: {{token}}
 Content-Type: application/json
 
 {
@@ -57,4 +68,5 @@ Content-Type: application/json
 }
 
 ### Delete Movies
-DELETE  http://localhost:3000/movies/1
+DELETE  http://localhost:3000/movies/b79a2cf2-068b-42b9-8ba2-a8310bc92bb7
+Authorization: {{token}}

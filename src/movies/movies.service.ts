@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AutenticationService } from 'src/autentication/autentication.service';
 import { UuidService } from 'src/uuid/uuid.service';
@@ -24,15 +24,21 @@ export class MoviesService {
     return this.moviesRepositories.find()
   }
 
-  findOne(id: string):Promise<Movies> {
-    return this.moviesRepositories.findOneBy({id})
+  async findOne(id: string):Promise<Movies> {
+    const movie = await this.moviesRepositories.findOneBy({id})
+    if (!movie) {
+      throw new NotFoundException({message: "Filme não encontrado!"});
+    }
+    return movie
   }
 
-  update(id: string, updateMovieDto: UpdateMovieDto) {
+  async update(id: string, updateMovieDto: UpdateMovieDto) {
+    await this.findOne(id)
     return this.moviesRepositories.update(id,updateMovieDto)
   }
 
-  remove(id: string) {
+  async remove(id: string) {
+    await this.findOne(id)
     return this.moviesRepositories.delete(id)
   }
 }

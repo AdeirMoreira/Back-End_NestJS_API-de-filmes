@@ -1,27 +1,32 @@
 import { Injectable } from '@nestjs/common';
-import * as jwt from 'jsonwebtoken';
+import { JwtService } from '@nestjs/jwt';
+import { HashManagerService } from 'src/hash-manager/hash-manager.service';
+import { UserService } from 'src/user/user.service';
 
-type AuthenticationData = {
-    id: string
-}
 
 @Injectable()
 export class AutenticationService {
-    generateToken = (id: AuthenticationData):string => {
-        const token = jwt.sign(
-        {
-            id
-        },
-        process.env.JWT_KEY as string,
-        {
-            expiresIn:  process.env.EXPIRES_IN
-        }
-        );
-        return token;
-    }
+    constructor(
+      private usersService: UserService,
+      private hashManagerService: HashManagerService,
+      private jwtService: JwtService
+      ) {}
 
-    getTokenData = (token:string):string => {
-        const data = jwt.verify(token, process.env.JWT_KEY as string) as any
-        return data.id.id
+  async validateUser(email: string, pass: string): Promise<any> {
+    const user = await this.usersService.findOnebyEmail(email);
+    if (user && this.hashManagerService.compare(pass,user.password)) {
+      const { password, ...result } = user;
+      return result;
     }
+    return null;
+  }
+
+  async login(user: any) {
+    const payload = {username: user.username, email: user.email, sub: user.id };
+    return {
+      token: this.jwtService.sign(payload,
+        {secret: 'segredo', expiresIn: '5h' }
+        ),
+    };
+  }
 }
