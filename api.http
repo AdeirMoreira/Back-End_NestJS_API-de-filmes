@@ -42,6 +42,7 @@ GET http://localhost:3000/movies/
 Authorization: {{token}}
 
 ### Resgister Movie
+# @name movie
 POST http://localhost:3000/movies
 Authorization: {{token}}
 Content-Type: application/json
@@ -54,19 +55,20 @@ Content-Type: application/json
     "duration": 120
 }
 
+###
+@id = {{movie.response.body.id}}
+
 ### Edit Movie
-PATCH   http://localhost:3000/movies/b79a2cf2-068b-42b9-8ba2-a8310bc92bb7
+PATCH   http://localhost:3000/movies/{{id}}
 Authorization: {{token}}
 Content-Type: application/json
 
 {
-    "name": "teste",
-    "category": "teste",
-    "premiere_date": "2022/12/12",
-    "description": "description",
-    "duration": 120
+    "name": "modidificado",
+    "description": "modificado",
+    "duration": 200
 }
 
 ### Delete Movies
-DELETE  http://localhost:3000/movies/b79a2cf2-068b-42b9-8ba2-a8310bc92bb7
+DELETE  http://localhost:3000/movies/{{id}}
 Authorization: {{token}}
